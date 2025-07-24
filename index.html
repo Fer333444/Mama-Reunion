@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reunión Familiar 2025</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>Reunión Familiar</h1>
+    <p class="fecha">26 de julio de 2025</p>
+    <div class="cuenta">
+      <span id="dias">00</span>d :
+      <span id="horas">00</span>h :
+      <span id="minutos">00</span>m :
+      <span id="segundos">00</span>s
+    </div>
+
+    <div class="flex-layout">
+      <div class="cuadro">
+        <img src="menu_reunion_familiar_profesional.png" alt="Información de la reunión">
+      </div>
+      <div class="cuadro">
+        <img src="menu_platos.png" alt="Menú de la reunión">
+      </div>
+    </div>
+
+    <a href="https://maps.google.com/?q=Quinta+do+Sol,+Braga" target="_blank" class="btn">📍 Ver ubicación</a>
+
+    <div class="info">
+      <h2>📍 Ubicación del evento</h2>
+      <p>Quinta do Sol, Braga, Portugal</p>
+      <p>Desde las 12:00 p.m. hasta las 20:00 p.m.</p>
+    </div>
+  </div>
+
+  <script>
+    const fechaEvento = new Date("2025-07-27T00:30:00Z").getTime();
+    setInterval(() => {
+      const ahora = new Date().getTime();
+      const distancia = fechaEvento - ahora;
+      if (distancia < 0) {
+        document.querySelector(".cuenta").textContent = "¡El evento ha comenzado!";
+        return;
+      }
+      const d = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distancia % (1000 * 60)) / 1000);
+      document.getElementById("dias").textContent = d.toString().padStart(2, "0");
+      document.getElementById("horas").textContent = h.toString().padStart(2, "0");
+      document.getElementById("minutos").textContent = m.toString().padStart(2, "0");
+      document.getElementById("segundos").textContent = s.toString().padStart(2, "0");
+    }, 1000);
+  </script>
+</body>
+</html>
